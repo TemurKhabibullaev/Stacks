@@ -11,9 +11,12 @@ class Stacks:
         self.head = None
 
     def push(self, data):
-        new_node = Node(data)
-        new_node.next = self.head
-        self.head = new_node
+        if self.head is None:
+            self.head = Node(data)
+        else:
+            new_node = Node(data)
+            new_node.next = self.head
+            self.head = new_node
 
     def pop(self):
         ret = self.head.data
