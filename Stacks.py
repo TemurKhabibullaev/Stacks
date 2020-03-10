@@ -1,29 +1,51 @@
-
-
 class Node:
     def __init__(self, data=None):
         self.data = data
         self.next = None
 
+    def __repr__(self):
+        return str(self.data)
 
-class Stacks:
+
+class SinglyLinkedList:
     def __init__(self):
         self.head = None
-# Add head
 
-    def push(self, data):
-        if self.head is None:
-            self.head = Node(data)
+    def adding(self, data):
+        new_node = Node(data)
+        if self.head:
+            current = self.head
+            while current.next:
+                current = current.next
+            current.next = new_node
         else:
-            new_node = Node(data)
-            new_node.next = self.head
             self.head = new_node
-# Delete head
 
-    def pop(self):
-        ret = self.head.data
+    def add_head(self, data):
+        new_node = Node(data)
+        new_node.next = self.head
+        self.head = new_node
+
+    def del_head(self):
         self.head = self.head.next
-        return ret
+
+    def del_end(self):
+        list = []
+        current = self.head
+        list.append(current.data)
+        while current.next:
+            current = current.next
+            list.append(current.data)
+        del list[-1]
+        print(list)
+
+    def length(self):
+        current = self.head
+        total = 1
+        while current.next:
+            total += 1
+            current = current.next
+        print(total)
 
     def display(self):
         elems = []
@@ -32,5 +54,56 @@ class Stacks:
         while current.next:
             current = current.next
             elems.append(current.data)
-        return elems
+        print(elems)
 
+    def show_any(self, index):
+        list = []
+        current = self.head
+        list.append(current)
+        while current.next:
+            current = current.next
+            list.append(current)
+        if index > len(list):
+            print("ERROR. Out of range")
+        print(list[index])
+
+    def erase_by_index(self, index):
+        list = []
+        current = self.head
+        list.append(current)
+        while current.next:
+            current = current.next
+            list.append(current)
+        if index > len(list):
+            print("ERROR. Out of range")
+        del list[index]
+        print(list)
+
+    def rem_obj(self, object):
+        list = []
+        current = self.head
+        list.append(current.data)
+        if int(object) in list: list.remove(object)
+        while current.next:
+            current = current.next
+            list.append(current.data)
+        if int(object) in list: list.remove(object)
+        elif int(object) not in list: print("Error. No such value")
+        print(list)
+
+    def contains_or_not(self, object):
+        list = []
+        current = self.head
+        list.append(current.data)
+        while current.next:
+            current = current.next
+            list.append(current.data)
+        if int(object) in list: print(True)
+        else: print(False)
+
+    def clear(self):
+        current = self.head
+        current.data = None
+        while current.next:
+            current = current.next
+            current.data = None
