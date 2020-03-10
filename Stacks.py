@@ -1,15 +1,16 @@
 from LinkedList import SinglyLinkedList
 
-ins = SinglyLinkedList()
-
 
 class Stacks:
+    def __init__(self):
+        self.ins = SinglyLinkedList()
+
     def push(self, data):
-        ins.add_head(data)
+        self.ins.add_head(data)
 
     def pop(self):
-        return ins.del_head()
+        return self.ins.del_head()
 
     def display(self):
-        return ins.display()
+        return self.ins.display()
 

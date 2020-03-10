@@ -1,7 +1,8 @@
 from Stacks import Stacks as S
 instance_amount = S()
+instance_price = S()
 profit = 0
-
+inventory = 0
 while True:
     print("""Welcome! Choose below to proceed!
     MENU:
@@ -13,10 +14,9 @@ while True:
     if select == 1:
         amount = int(input("Please specify how many:\n>>>"))
         instance_amount.push(int(amount))
-        print(instance_amount.display())
+        inventory += amount
         price = int(input("Please specify hom much it cost:\n>>>"))
         instance_price.push(int(price))
-        print(instance_price.display())
     if select == 2:
         amount_to_sell = int(input("Specify how many will be deleted:\n>>>"))
         selling_item = instance_amount.pop()
