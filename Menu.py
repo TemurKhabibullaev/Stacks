@@ -19,8 +19,22 @@ while True:
         instance_price.push(int(price))
     if select == 2:
         amount_to_sell = int(input("Specify how many will be deleted:\n>>>"))
-        selling_item = instance_amount.pop()
-        print("Was added to bank account:")
+        if amount_to_sell > inventory:
+            print("You specified too large amount.")
+            break
+        else:
+            inventory -= amount_to_sell
+            temporary = 0
+            last_price = None
+            if temporary < amount_to_sell:
+                selling_item = instance_amount.pop()
+                last_price = instance_price.pop()
+                temporary += selling_item
+                print("Was added to bank account:")
+            if temporary > amount_to_sell:
+                difference = temporary - amount_to_sell
+                instance_amount.push(difference)
+                instance_price.push(last_price)
     if select == 3:
         print("So far you have made:")
     if select == 0:
