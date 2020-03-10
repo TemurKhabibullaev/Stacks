@@ -9,6 +9,7 @@ class Node:
 class Stacks:
     def __init__(self):
         self.head = None
+# Add head
 
     def push(self, data):
         if self.head is None:
@@ -17,6 +18,7 @@ class Stacks:
             new_node = Node(data)
             new_node.next = self.head
             self.head = new_node
+# Delete head
 
     def pop(self):
         ret = self.head.data
@@ -30,7 +32,5 @@ class Stacks:
         while current.next:
             current = current.next
             elems.append(current.data)
-        print(elems)
+        return elems
 
-stack_instance = Stacks
-stack_instance.push(4)
