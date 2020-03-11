@@ -26,15 +26,27 @@ while True:
             inventory -= amount_to_sell
             temporary = 0
             last_price = None
-            if temporary < amount_to_sell:
+            x = instance_amount.display()[0]
+
+            if x < amount_to_sell:
                 selling_item = instance_amount.pop()
                 last_price = instance_price.pop()
                 temporary += selling_item
-                print("Was added to bank account:")
-            if temporary > amount_to_sell:
-                difference = temporary - amount_to_sell
+                current_profit = (0.1 * int(last_price)) * int(selling_item)
+                profit += current_profit
+                print(profit)
+            if amount_to_sell < x:
+                selling_item = instance_amount.pop()
+                last_price = instance_price.pop()
+                difference = selling_item - amount_to_sell
                 instance_amount.push(difference)
                 instance_price.push(last_price)
+                break
+            if x == amount_to_sell:
+                selling_item = instance_amount.pop()
+                last_price = instance_price.pop()
+                profit += (last_price * 0.1) * selling_item
+                break
     if select == 3:
         print("So far you have made:")
     if select == 0:
