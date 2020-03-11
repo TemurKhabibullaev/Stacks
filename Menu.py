@@ -9,7 +9,8 @@ while True:
     1. Add to the inventory.
     2. Sell items in inventory.
     3. Check profit to date.
-    4. Enter 0 to exit.""")
+    4. Display inventory.
+    5. Enter 5 to exit.""")
     select = int(input("\n>>>"))
     if select == 1:
         amount = int(input("Please specify how many:\n>>>"))
@@ -24,31 +25,39 @@ while True:
             break
         else:
             inventory -= amount_to_sell
-            temporary = 0
             last_price = None
             x = instance_amount.display()[0]
 
             if x < amount_to_sell:
-                selling_item = instance_amount.pop()
-                last_price = instance_price.pop()
-                temporary += selling_item
-                current_profit = (0.1 * int(last_price)) * int(selling_item)
-                profit += current_profit
-                print(profit)
-            if amount_to_sell < x:
+                storage = 0
+                while storage != amount_to_sell and storage < amount_to_sell:
+                    selling_item = instance_amount.pop()
+                    storage += selling_item
+                    last_price = instance_price.pop()
+                if storage > amount_to_sell:
+                    difference = storage - amount_to_sell
+                    instance_amount.push(difference)
+                    instance_price.push(last_price)
+                    profit += (last_price * 0.1) * amount_to_sell
+
+            if amount_to_sell < x and amount_to_sell > 0:
                 selling_item = instance_amount.pop()
                 last_price = instance_price.pop()
                 difference = selling_item - amount_to_sell
                 instance_amount.push(difference)
                 instance_price.push(last_price)
-                break
+                profit += (last_price * 0.1) * amount_to_sell
+
             if x == amount_to_sell:
                 selling_item = instance_amount.pop()
                 last_price = instance_price.pop()
                 profit += (last_price * 0.1) * selling_item
-                break
+
     if select == 3:
         print("So far you have made:")
-    if select == 0:
+        print(profit)
+    if select == 4:
+        print(instance_amount.display())
+    if select == 5:
         break
 
